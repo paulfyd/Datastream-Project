@@ -48,7 +48,7 @@ if __name__ == '__main__':
         final_row = df.iloc[-1]
 
         features = []
-        for t in [3, 5, 10]:
+        for t in [5, 20, 60]:
             open_moy = df.iloc[-t:-1].open.mean()
             open_std = df.iloc[-t:-1].open.std()
             n_trades_sum = df.iloc[-t:-1].n_trades.sum()
@@ -57,7 +57,8 @@ if __name__ == '__main__':
             features.append(feats)
         features = np.array(features).flatten()
 
-        times = ['1m', '3m', '10m']
+        #times = ['1m', '3m', '10m']
+        times = ['5m', '20m', '60m']
         col_x = [[f'moy_{t}', f'std_{t}', f'n_trades_sum_{t}', f'delta_{t}'] for t in times]
         col_x = np.array(col_x).flatten()
         x = {col_x[i] : features[i] for i in range(len(features))}
@@ -81,9 +82,8 @@ if __name__ == '__main__':
         print(f'Current SMAPE : {new_smape:.3f}%')
 
         results = [timestamp, y, y_pred, mae, mape, new_mae, new_smape] + list(features)
-        print(results)
+        #print(results)
         cols_res = ['timestamp', 'y', 'y_pred', 'mae', 'mape', 'new_mae', 'new_smape'] + list(col_x)
-        print(cols_res)
         df_tmp = pd.DataFrame([results], columns=cols_res)
         df_results = pd.concat((df_results, df_tmp))
 
