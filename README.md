@@ -13,9 +13,7 @@ pip install -r requirements.txt
 ```
 
 To get our features and the true value of the crypto in real-time, we use Kafka.
-The producer will run request on the Binance API (see https://binance-docs.github.io/apidocs/spot/en/#change-log) and will write the obtained json file in a topic called binance-topic.
-You must create this topic before running the code. 
-
+The producer will realize requests on the Binance API (see https://binance-docs.github.io/apidocs/spot/en/#change-log) and will write the obtained json file in a topic called binance-topic. You must create this topic before running the code. 
 Then run 
 
 ```sh
